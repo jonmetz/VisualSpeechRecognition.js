@@ -76,11 +76,15 @@ function startVideo() {
 }
 
 function drawLoop() {
-	requestAnimFrame(drawLoop);
+  requestAnimFrame(drawLoop);
 	overlayCC.clearRect(0, 0, 400, 300);
-	//psrElement.innerHTML = "score :" + ctrack.getScore().toFixed(4);
-	if (ctrack.getCurrentPosition()) {
-		ctrack.draw(overlay);
+	// //psrElement.innerHTML = "score :" + ctrack.getScore().toFixed(4);
+	// if (ctrack.getCurrentPosition()) {
+	// 	ctrack.draw(overlay);
+	// }
+  var currPos = ctrack.getCurrentPosition()
+	if (currPos) {
+		drawLips(overlay, currPos);
 	}
 }
 
