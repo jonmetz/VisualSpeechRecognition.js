@@ -1,0 +1,69 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+
+body {
+		font-family: 'Lato';
+		background-color: #f0f0f0;
+		margin: 0px auto;
+		max-width: 1150px;
+}
+
+#overlay {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		-o-transform : scaleX(-1);
+		-webkit-transform : scaleX(-1);
+		transform : scaleX(-1);
+		-ms-filter : fliph; /*IE*/
+		filter : fliph; /*IE*/
+}
+
+#videoel {
+		-o-transform : scaleX(-1);
+		-webkit-transform : scaleX(-1);
+		transform : scaleX(-1);
+		-ms-filter : fliph; /*IE*/
+		filter : fliph; /*IE*/
+}
+
+#container {
+		position : relative;
+		width : 370px;
+		/*margin : 0px auto;*/
+}
+
+#content {
+		margin-top : 70px;
+		margin-left : 100px;
+		margin-right : 100px;
+		max-width: 950px;
+}
+
+#sketch {
+		display: none;
+}
+
+#filter {
+		display: none;
+}
+
+h2 {
+		font-weight : 400;
+}
+
+.nogum {
+		display : none;
+}
+
+.btn {
+		font-family: 'Lato';
+		font-size: 16px;
+}
+
+.hide {
+		display : none;
+}
+
+.nohide {
+		display : block;
+}
