@@ -19,6 +19,21 @@ function drawPoints(cc, points) {
   cc.lineTo(x+1, y+1);
   cc.stroke();
   }
+
   for (var i = 0; i < points.length; i++)
-    point(points[i][0], points[i][1])
+    point(points[i][0], points[i][1]);
+}
+
+function displayPoints(currPos) {
+  var lipPoints = currPos.slice(44, 62);
+  var noseX = currPos[62][0];
+  var noseY = currPos[62][1];
+  var positionString = "";
+  for(var i = 0; i < lipPoints.length; i++)
+  {
+    var transX = lipPoints[i][0] - noseX;
+    var transY = lipPoints[i][1] - noseY;
+    positionString += "Feature point " + i + ": [" + transX.toFixed(2) + ", " + transY.toFixed(2) + "]<br/>";
+  }
+  document.getElementById('positions').innerHTML = positionString;
 }

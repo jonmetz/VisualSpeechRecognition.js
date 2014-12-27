@@ -85,6 +85,7 @@ function drawLoop() {
   var currPos = ctrack.getCurrentPosition()
 	if (currPos) {
 		drawLips(overlay, currPos);
+		displayPoints(currPos);
 	}
 }
 
