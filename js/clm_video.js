@@ -75,6 +75,7 @@ function startVideo() {
 	drawLoop();
 }
 
+// var deque = new Deque(); //deque[frame][pt][x or y]
 function drawLoop() {
   requestAnimFrame(drawLoop);
 	overlayCC.clearRect(0, 0, 400, 300);
@@ -86,6 +87,17 @@ function drawLoop() {
 	if (currPos) {
 		drawLips(overlay, currPos);
 		displayPoints(currPos);
+
+		//store the newest 25 frames
+		// if(deque.length < 25)
+		// 	addPoints(deque, currPos);
+		// else //more than 25 frames
+		// {
+		// 	deque.shift() //get rid of oldest by removing from front
+		// 	addPoints(deque, currPos); //insert newest frame
+		// }
+
+		var mouthDist = getMouthDistances(currPos);
 	}
 }
 
