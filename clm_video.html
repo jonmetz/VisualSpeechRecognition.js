@@ -6,6 +6,21 @@
 		<meta charset="utf-8">
 		<link href="./styles/bootstrap.min.css" rel="stylesheet" type="text/css">
 		<link href="./styles/clm_video.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.firebase.com/js/client/2.0.6/firebase.js"></script>
+    <script>
+     var BosArr = [
+       [ [10,15], [25, 64], [13,53] ],
+       [ [25, 63], [2,24], [5, 56] ]
+     ];
+     var firebase = new Firebase("https://lips.firebaseio.com/");
+     firebase.set({
+       "BosArr": BosArr
+     });
+     firebase.child("BosArr").on("value", function(snapshot) {
+       console.log("like shooting fish in a barrel");
+       console.log(snapshot.val());
+     });
+    </script>
 	</head>
 	<body>
 		<script src="./js/utils.js"></script>
