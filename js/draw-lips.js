@@ -39,7 +39,7 @@ function displayPoints(currPos) {
 }
 
 function getMouthDistances(currPos) {
-  var THRESHOLD = 11;
+  var THRESHOLD = 15;
 
   var distString = "";
   var xDiff = currPos[60][0] - currPos[57][0];
@@ -47,13 +47,18 @@ function getMouthDistances(currPos) {
   var xDiffSq = Math.pow(xDiff,2);
   var yDiffSq = Math.pow(yDiff,2);
 
+  var isOpen = false;
+
   distString += "Difference: " + ptToString(xDiff, yDiff);
   distString += "Squared: " + ptToString(xDiffSq, yDiffSq);
 
-  if(Math.abs(yDiffSq) > THRESHOLD)
+  if(Math.abs(yDiffSq) > THRESHOLD) {
     distString += "Speaking!<br/>";
+    isOpen = true;
+  }
 
   document.getElementById('mouthDist').innerHTML = distString;
+  return isOpen;
 }
 
 function ptToString(x, y)

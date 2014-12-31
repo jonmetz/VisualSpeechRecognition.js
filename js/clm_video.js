@@ -76,6 +76,11 @@ function startVideo() {
 }
 
 // var deque = new Deque(); //deque[frame][pt][x or y]
+var closedTimer = 0;
+var spokenTimer = 0;
+var prevIsOpen = false;
+var CLOSED_LIMIT = 25*1; //1 second worth of frames
+var SPOKEN_LIMIT = 25*.6;
 function drawLoop() {
   requestAnimFrame(drawLoop);
 	overlayCC.clearRect(0, 0, 400, 300);
@@ -97,7 +102,38 @@ function drawLoop() {
 		// 	addPoints(deque, currPos); //insert newest frame
 		// }
 
-		var mouthDist = getMouthDistances(currPos);
+		var isOpen = getMouthDistances(currPos);
+
+		if(isOpen) //currently speaking, increment
+		{
+			spokenTimer++;
+			if(prevIsOpen == false) //went from closed to open
+				spokenTimer += closedTimer; //b/c closed interval counts as speaking
+
+			closedTimer = 0;
+		}
+		if(prevIsOpen == true && isOpen == false) //goes from open to closed
+		{
+			//increment both timers
+			spokenTimer++; //could possibly still be speaking, increment
+			closedTimer++; //mouth is closed, so increment
+		}
+		else if(isOpen == false && closedTimer > 0) //mouth is closed and closedTimer has begun
+		{
+			if(closedTimer < CLOSED_LIMIT)
+				closedTimer++;
+			else //reached threshold of closedTimer, assume mouth is closed indefinitely now
+			{
+				if(spokenTimer > SPOKEN_LIMIT)
+					alert("Word has been spoken! Duration: " + (spokenTimer/25).toFixed(2) + " seconds");
+				closedTimer = spokenTimer = 0;
+			}
+
+		}
+
+		prevIsOpen = isOpen;
+		document.getElementById('spokenTimer').innerHTML = spokenTimer + "<br/>";
+		document.getElementById('closedTimer').innerHTML = closedTimer + "<br/>";
 	}
 }
 
