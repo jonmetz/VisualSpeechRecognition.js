@@ -75,12 +75,13 @@ function startVideo() {
 	drawLoop();
 }
 
-// var deque = new Deque(); //deque[frame][pt][x or y]
+var paths = []; //paths[frame number][point][x or y]
 var closedTimer = 0;
 var spokenTimer = 0;
 var prevIsOpen = false;
 var CLOSED_LIMIT = 25*1; //1 second worth of frames
 var SPOKEN_LIMIT = 25*.6;
+var MIN_PATHS_LENGTH = 25;
 function drawLoop() {
   requestAnimFrame(drawLoop);
 	overlayCC.clearRect(0, 0, 400, 300);
@@ -94,13 +95,15 @@ function drawLoop() {
 		displayPoints(currPos);
 
 		//store the newest 25 frames
-		// if(deque.length < 25)
-		// 	addPoints(deque, currPos);
-		// else //more than 25 frames
-		// {
-		// 	deque.shift() //get rid of oldest by removing from front
-		// 	addPoints(deque, currPos); //insert newest frame
-		// }
+		if(paths.length < MIN_PATHS_LENGTH || spokenTimer > 0) //fill to 25 or currently speaking
+			addPoints(paths, currPos);
+		else //more than 25 frames
+		{
+			while(paths.length >= MIN_PATHS_LENGTH)
+				paths.shift() //get rid of oldest by removing from front
+			addPoints(paths, currPos); //insert newest frame
+		}
+		document.getElementById('message').innerHTML = paths.length;
 
 		var isOpen = getMouthDistances(currPos);
 
@@ -125,7 +128,17 @@ function drawLoop() {
 			else //reached threshold of closedTimer, assume mouth is closed indefinitely now
 			{
 				if(spokenTimer > SPOKEN_LIMIT)
+				{
+					var pathStr = document.getElementById('paths');
+					pathStr.innerHTML = "";
+					for(var i = 0; i < paths[0].length; i++) //first frame, 18 points
+					{
+						pathStr.innerHTML += "Point " + i + ": " + ptToString(paths[0][i][0], paths[0][i][1]);
+					}
+
+
 					alert("Word has been spoken! Duration: " + (spokenTimer/25).toFixed(2) + " seconds");
+				}
 				closedTimer = spokenTimer = 0;
 			}
 

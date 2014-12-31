@@ -67,8 +67,16 @@ function ptToString(x, y)
 }
 
 //add lip points per frame by doing slice and putting into an array, then into deque
-// function addPoints(deque, currPos)
-// {
-//   var lipPoints = currPos.slice(44, 62);
-//   deque.push([lipPoints]);
-// }
+function addPoints(deque, currPos)
+{
+  var lipPoints = currPos.slice(44, 62); //get only lip points
+  var noseX = currPos[62][0];
+  var noseY = currPos[62][1];
+
+  var shifted = [];
+  for(var i = 0; i < lipPoints.length; i++)
+  {
+    shifted.push([lipPoints[i][0] - noseX, lipPoints[i][1] - noseY]);
+  } 
+  deque.push(shifted);
+}
