@@ -145,12 +145,7 @@ function drawLoop() {
 						pathsCopy.push(paths.shift());
 					calibratedInstances.push(pathsCopy);
 
-					if(calibratedInstances.length == 5)
-					{
-						alert("Word has been spoken 5 times, will now be stored");
-						
-						
-					}
+					
 				}
 				closedTimer = spokenTimer = 0;
 			}
