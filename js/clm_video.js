@@ -75,6 +75,7 @@ function startVideo() {
 	drawLoop();
 }
 
+var calibratedInstances = [];
 var paths = []; //paths[frame number][point][x or y]
 var closedTimer = 0;
 var spokenTimer = 0;
@@ -94,7 +95,6 @@ function drawLoop() {
 		drawLips(overlay, currPos);
 		displayPoints(currPos);
 
-		//store the newest 25 frames
 		if(paths.length < MIN_PATHS_LENGTH || spokenTimer > 0) //fill to 25 or currently speaking
 			addPoints(paths, currPos);
 		else //more than 25 frames
@@ -135,9 +135,22 @@ function drawLoop() {
 					{
 						pathStr.innerHTML += "Point " + i + ": " + ptToString(paths[0][i][0], paths[0][i][1]);
 					}
-
+					// firebase.push({
+					// 	"word": paths
+					// });
 
 					alert("Word has been spoken! Duration: " + (spokenTimer/25).toFixed(2) + " seconds");
+					var pathsCopy = [];
+					while(paths.length > 0)
+						pathsCopy.push(paths.shift());
+					calibratedInstances.push(pathsCopy);
+
+					if(calibratedInstances.length == 5)
+					{
+						alert("Word has been spoken 5 times, will now be stored");
+						
+						
+					}
 				}
 				closedTimer = spokenTimer = 0;
 			}
