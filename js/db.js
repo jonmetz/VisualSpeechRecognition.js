@@ -16,13 +16,14 @@ var makeSaveCalibrationMatrix = function(name, matrix) {
       return true;
     }
   }
+  return saveCalibrationMatrix;
 };
 
 var askSaveCalibrationMatrix = function(word, matrix) {
   var saved;
   var QUESTION_TEXT = "Save calibration matrix for word: " + word;
   var saveCalMat = makeSaveCalibrationMatrix(name, matrix);
-  var userAnswer = prompt(QUESTION_TEXT);
+  var userAnswer = confirm(QUESTION_TEXT);
 
   if (userAnswer) {
     saveCalMat();

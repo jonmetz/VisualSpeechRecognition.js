@@ -139,13 +139,13 @@ function drawLoop() {
 					// 	"word": paths
 					// });
 
-					alert("Word has been spoken! Duration: " + (spokenTimer/25).toFixed(2) + " seconds");
+					alert("Word has been spoken! Duration: " + spokenTimer + " frames");
 					var pathsCopy = [];
 					while(paths.length > 0)
 						pathsCopy.push(paths.shift());
-					calibratedInstances.push(pathsCopy);
 
-					
+					askSaveCalibrationMatrix("testing", pathsCopy);
+					paths = [];
 				}
 				closedTimer = spokenTimer = 0;
 			}
