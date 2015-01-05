@@ -75,12 +75,14 @@ function startVideo() {
 	drawLoop();
 }
 
+var calibrateModeOn = false; //determine if calibrating or testing
 var calibratedInstances = [];
+var scale = 1;
 var paths = []; //paths[frame number][point][x or y]
 var closedTimer = 0;
 var spokenTimer = 0;
 var prevIsOpen = false;
-var CLOSED_LIMIT = 25*1; //1 second worth of frames
+var CLOSED_LIMIT = 25*1; //1 "second" worth of frames
 var SPOKEN_LIMIT = 25*.6;
 var MIN_PATHS_LENGTH = 25;
 function drawLoop() {
@@ -94,6 +96,12 @@ function drawLoop() {
 	if (currPos) {
 		drawLips(overlay, currPos);
 		displayPoints(currPos);
+
+		if(!calibrateModeOn)
+		{
+			//calculate a new scaling factor
+			
+		}
 
 		if(paths.length < MIN_PATHS_LENGTH || spokenTimer > 0) //fill to 25 or currently speaking
 			addPoints(paths, currPos);
@@ -127,6 +135,7 @@ function drawLoop() {
 				closedTimer++;
 			else //reached threshold of closedTimer, assume mouth is closed indefinitely now
 			{
+				//code executes when user finishes speaking!
 				if(spokenTimer > SPOKEN_LIMIT)
 				{
 					var pathStr = document.getElementById('paths');
@@ -135,16 +144,12 @@ function drawLoop() {
 					{
 						pathStr.innerHTML += "Point " + i + ": " + ptToString(paths[0][i][0], paths[0][i][1]);
 					}
-					// firebase.push({
-					// 	"word": paths
-					// });
 
-					// alert("Word has been spoken! Duration: " + spokenTimer + " frames");
+					//deep copy of paths
 					var pathsCopy = [];
 					while(paths.length > 0)
 						pathsCopy.push(paths.shift());
 
-					var calibrateModeOn = false;
 					if(calibrateModeOn) //calibration mode
 					{
 						var inputWord = prompt("What word spoken?");

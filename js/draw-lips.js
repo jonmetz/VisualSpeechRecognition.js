@@ -4,8 +4,6 @@ function drawLips(canvas, currPos) {
 	cc.strokeStyle = "rgb(255,0,0)";
   var lipPoints = currPos.slice(44, 62);
   drawPoints(cc, lipPoints);
-
-
 }
 
 function drawPoints(cc, points) {
@@ -14,10 +12,10 @@ function drawPoints(cc, points) {
   // https://stackoverflow.com/questions/7812514/drawing-a-dot-on-html5-canvas
 
   function point(x, y){
-  cc.beginPath();
-  cc.moveTo(x, y);
-  cc.lineTo(x+1, y+1);
-  cc.stroke();
+    cc.beginPath();
+    cc.moveTo(x, y);
+    cc.lineTo(x+1, y+1);
+    cc.stroke();
   }
 
   for (var i = 0; i < points.length; i++)
@@ -77,6 +75,6 @@ function addPoints(deque, currPos)
   for(var i = 0; i < lipPoints.length; i++)
   {
     shifted.push([lipPoints[i][0] - noseX, lipPoints[i][1] - noseY]);
-  } 
+  }
   deque.push(shifted);
 }
