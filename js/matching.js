@@ -12,7 +12,7 @@ memo: DP table of dimensions [A.length+1][B.length+1]
 i: how many frames are left in A
 j: how many frames are left in B
 */
-var INF = 100000;
+var INF = 500000;
 var memo;
 var MAX_SIZE_SCALE = .9;
 
@@ -103,3 +103,42 @@ function getScore(A, B, i, j)
 
 	return memo[i][j];
 }
+
+var dictionary = ["potato", "colonoscopy", "meandering", "diabetes"];
+function getBestWord(queryPath)
+{
+	if(!confirm("Test with this query?"))
+		return;
+
+	alert("Currently finding best word");
+	var minScore = INF;
+	var bestWord = "NOT FOUND";
+
+	var results = [];
+	var halt = true;
+	firebase.child("calibrationMatrices").on("value", function(snapshot) {
+		var calib = snapshot.val();
+		for(var i = 0; i < dictionary.length; i++) //compare against each word
+		{
+			var word = dictionary[i];
+			
+			var wordPath = calib[word];
+			var score = calcSimilarity(wordPath, queryPath);
+			alert("Word being tested now is: " + dictionary[i] + ". Score: " + score);
+			results.push([word, score]);
+
+			if(score < minScore)
+			{
+				minScore = score;
+				bestWord = word;
+			}
+		}
+		console.log(results);
+		alert(bestWord + " " + minScore);
+		halt = false;
+	});
+
+	// while(halt) {}
+}
+
+
