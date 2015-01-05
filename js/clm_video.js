@@ -100,7 +100,7 @@ function drawLoop() {
 		if(!calibrateModeOn)
 		{
 			//calculate a new scaling factor
-			
+
 		}
 
 		if(paths.length < MIN_PATHS_LENGTH || spokenTimer > 0) //fill to 25 or currently speaking
@@ -152,6 +152,8 @@ function drawLoop() {
 
 					if(calibrateModeOn) //calibration mode
 					{
+						recordNoseLength(currPos);
+
 						var inputWord = prompt("What word spoken?");
 						askSaveCalibrationMatrix(inputWord, pathsCopy);
 					}
