@@ -100,7 +100,7 @@ function drawLoop() {
 		if(!calibrateModeOn)
 		{
 			//calculate a new scaling factor
-			
+
 		}
 
 		if(paths.length < MIN_PATHS_LENGTH || spokenTimer > 0) //fill to 25 or currently speaking
