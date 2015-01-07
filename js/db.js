@@ -1,16 +1,36 @@
 var firebase = new Firebase("https://lips.firebaseio.com/");
 
+function initializeCalMatList() {
+  var calMatListRef = firebase.child("calibrationMatrixList");
+  calMatListRef.once('value', function(snapshot) {
+    var calMatList = snapshot.val();
+    if (calMatList) {
+      console.log('already initialized calibrationMatrixList');
+    }
+    else {
+      calMatList = [];
+      calMatList[0] = false;
+      calMatListRef.set(calMatList);
+    }
+  });
+}
+
 var makeSaveCalibrationMatrix = function(word, matrix) {
   var invoked = false;
-  // console.log(name);
   var saveCalibrationMatrix = function() {
     if (invoked) {
       console.log("saveCalibrationMatrix may only be invoked once");
     }
     else {
-      var calibrationMatricesRef = firebase.child("calibrationMatrices");
-      var wordRef = calibrationMatricesRef.child(word);
-      wordRef.set(matrix);
+      var calMatListRef = firebase.child("calibrationMatrixList");
+      calMatListRef.once('value', function(snapshot) {
+        var calMatList = snapshot.val();
+        var nextItem = calMatList.length;
+        var jsonObj = {};
+        jsonObj[word] = matrix;
+        calMatList[nextItem] = jsonObj;
+        calMatListRef.set(calMatList);
+      });
       invoked = true;
     }
     return invoked;
