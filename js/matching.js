@@ -104,9 +104,9 @@ function getScore(A, B, i, j)
 	return memo[i][j];
 }
 
-var dictionary = ["potato", "colonoscopy", "diabetes", "corn", "computer"];
 function getBestWord(queryPath)
 {
+var dictionary = ["potato", "colonoscopy", "diabetes", "computer"];
 	if(!confirm("Test with this query?"))
 		return;
 
@@ -136,17 +136,11 @@ function getBestWord(queryPath)
 			}
 		}
 		alert("Best match: " + bestWord + ". Score: " + minScore);
+  // draw bar chart of best five words
+  drawchart(results);
+  $('#chart').show();
 	});
-
 }
-    // draw bar chart of best five words
- //    drawchart(results);
- //    // print to console
-	// 	console.log(results);
-	// 	alert(bestWord + " " + minScore);
-	// 	halt = false;
-	// });
-
 
 var noseRecorded = false;
 function recordNoseLength(currPos)
@@ -183,23 +177,20 @@ function sortfunction(a,b) {
 
 function getcol(matrix, col) {
   var vec = [];
-  var len = matrix.length;
+  var len = Math.min(matrix.length,5);
   for (var i=0; i<len; i++) {
-    vec.push(matrix[i][col]);
+    vec[vec.length] = matrix[i][col];
   }
   return vec;
 
 }
 
 function drawchart(results) {
-  // make chart area visible
-  // document.getElementById('chart').style.display = "block";
-  $('#chart').show();
   // sort results from best to worst score
   results.sort(sortfunction);
   var words = getcol(results, 0);
   var scores = getcol(results, 1);
-	var chart = $('#chart').highcharts({
+	$('#chart').highcharts({
 		chart: {
 			type: 'bar'
 		},
@@ -210,7 +201,7 @@ function drawchart(results) {
 			text: 'lowest score = best match'
 		},
 		xAxis: {
-			categories: results,
+			categories: words,
 			title: {text: null}
 		},
 		yAxis: {

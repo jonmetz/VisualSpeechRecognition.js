@@ -6,6 +6,10 @@
 		<meta charset="utf-8">
 		<link href="./styles/bootstrap.min.css" rel="stylesheet" type="text/css">
 		<link href="./styles/clm_video.css" rel="stylesheet" type="text/css">
+<!-- js for best match chart -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.src.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.0.6/firebase.js"></script>
     <script src="js/db.js"></script>
     <script>
@@ -33,11 +37,6 @@
 		<script src="./js/mossefilter.js"></script>
 		<script src="./js/Stats.js"></script>
 
-<!-- js for best match chart -->
-<script src="http://code.highcharts.com/highcharts.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
 		<div id="content">
 			<h2>Lipreading</h2>
 			<div id="container">
@@ -55,8 +54,8 @@
         <a href="dictionary.html" target="_blank">Dictionary</a>
       </p>
 
-      <!-- best match chart -->
-      <div id="chart" style="display:none; min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+<!-- best match chart -->
+<div id="chart" style="display:none; min-width: 400px; max-width: 800px; height: 300px; margin: 0 auto"></div>
 
 			<p>
 				Timers:<br/>
