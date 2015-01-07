@@ -26,8 +26,11 @@ var makeSaveCalibrationMatrix = function(word, matrix) {
       calMatListRef.once('value', function(snapshot) {
         var calMatList = snapshot.val();
         var nextItem = calMatList.length;
-        var jsonObj = {};
-        jsonObj[word] = matrix;
+        var jsonObj = {
+          word: word,
+          matrix: matrix
+        };
+        // jsonObj[word] = matrix;
         calMatList[nextItem] = jsonObj;
         calMatListRef.set(calMatList);
       });
