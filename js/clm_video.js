@@ -66,13 +66,19 @@ if (navigator.getUserMedia) {
 
 vid.addEventListener('canplay', enablestart, false);
 
+var noseLength;
 function startVideo() {
-	// start video
-	vid.play();
-	// start tracking
-	ctrack.start(vid);
-	// start loop to draw face
-	drawLoop();
+	//load nose length first
+	firebase.child("noseLength").on("value", function(snapshot) {
+	  	noseLength = snapshot.val();
+	
+		// start video
+		vid.play();
+		// start tracking
+		ctrack.start(vid);
+		// start loop to draw face
+		drawLoop();
+	});
 }
 
 var calibrateModeOn = false; //determine if calibrating or testing
@@ -88,20 +94,12 @@ var MIN_PATHS_LENGTH = 25;
 function drawLoop() {
   requestAnimFrame(drawLoop);
 	overlayCC.clearRect(0, 0, 400, 300);
-	// //psrElement.innerHTML = "score :" + ctrack.getScore().toFixed(4);
-	// if (ctrack.getCurrentPosition()) {
-	// 	ctrack.draw(overlay);
-	// }
+
   var currPos = ctrack.getCurrentPosition()
 	if (currPos) {
 		drawLips(overlay, currPos);
 		displayPoints(currPos);
 
-		if(!calibrateModeOn)
-		{
-			//calculate a new scaling factor
-
-		}
 
 		if(paths.length < MIN_PATHS_LENGTH || spokenTimer > 0) //fill to 25 or currently speaking
 			addPoints(paths, currPos);
@@ -152,13 +150,12 @@ function drawLoop() {
 
 					if(calibrateModeOn) //calibration mode
 					{
-						recordNoseLength(currPos);
-
 						var inputWord = prompt("What word spoken?");
 						askSaveCalibrationMatrix(inputWord, pathsCopy);
 					}
 					else //testing mode
 					{
+						console.log("displaying");
 						getBestWord(pathsCopy);
 					}
 				}
