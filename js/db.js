@@ -24,7 +24,9 @@ var makeSaveCalibrationMatrix = function(word, matrix) {
     else {
       var calMatListRef = firebase.child("calibrationMatrixList");
       calMatListRef.once('value', function(snapshot) {
-        var calMatList = snapshot.val();
+        var calMatList = $.map(snapshot.val(), function(value, index) {
+                           return [value];
+                         });
         var nextItem = calMatList.length;
         var jsonObj = {
           word: word,
