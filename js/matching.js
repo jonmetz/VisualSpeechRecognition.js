@@ -104,7 +104,7 @@ function getScore(A, B, i, j)
 	return memo[i][j];
 }
 
-var dictionary = ["potato", "colonoscopy", "meandering", "diabetes"];
+var dictionary = ["potato", "colonoscopy", "diabetes", "corn", "computer"];
 function getBestWord(queryPath)
 {
 	if(!confirm("Test with this query?"))
@@ -117,6 +117,8 @@ function getBestWord(queryPath)
 	var results = [];
 	var halt = true;
 	firebase.child("calibrationMatrices").on("value", function(snapshot) {
+		if(calibrateModeOn)
+			return;
 		var calib = snapshot.val();
 		for(var i = 0; i < dictionary.length; i++) //compare against each word
 		{
@@ -137,8 +139,30 @@ function getBestWord(queryPath)
 		alert(bestWord + " " + minScore);
 		halt = false;
 	});
-
-	// while(halt) {}
 }
 
+var noseRecorded = false;
+function recordNoseLength(currPos)
+{
+	//record only once
+	if(noseRecorded)
+		return;
+	noseRecorded = true;
+
+	var length = Math.abs(currPos[33][1] - currPos[62][1]); //length of nose bridge
+	
+	//put in firebase
+	firebase.child("noseLength").set(length);
+}
+
+function setScale(currPos)
+{
+	var length = Math.abs(currPos[33][1] - currPos[62][1]); //length of nose bridge
+	if(noseLength == -1)
+	{
+		firebase.child("noseLength").on("value", function(snapshot) {
+			noseLength = snapshot.val();
+		});
+	}
+}
 
