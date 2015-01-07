@@ -136,12 +136,12 @@ function getBestWord(queryPath)
 			}
 		}
     // draw bar chart of best five words
-    drawchart(results);
-    // print to console
-		console.log(results);
-		alert(bestWord + " " + minScore);
-		halt = false;
-	});
+ //    drawchart(results);
+ //    // print to console
+	// 	console.log(results);
+	// 	alert(bestWord + " " + minScore);
+	// 	halt = false;
+	// });
 }
 
 var noseRecorded = false;
@@ -156,6 +156,17 @@ function recordNoseLength(currPos)
 
 	//put in firebase
 	firebase.child("noseLength").set(length);
+}
+
+function setScale(currPos)
+{
+	var length = Math.abs(currPos[33][1] - currPos[62][1]); //length of nose bridge
+	if(noseLength == -1)
+	{
+		firebase.child("noseLength").on("value", function(snapshot) {
+			noseLength = snapshot.val();
+		});
+	}
 }
 
 function sortfunction(a,b) {
@@ -173,7 +184,7 @@ function getcol(matrix, col) {
     vec.push(matrix[i][col]);
   }
   return vec;
->>>>>>> be0d907... wrote javascript to display chart of best matches
+
 }
 
 function drawchart(results) {
