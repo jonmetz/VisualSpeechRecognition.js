@@ -135,6 +135,10 @@ function getBestWord(queryPath)
 				bestWord = word;
 			}
 		}
+		alert("Best match: " + bestWord + ". Score: " + minScore);
+	});
+
+}
     // draw bar chart of best five words
  //    drawchart(results);
  //    // print to console
@@ -142,7 +146,7 @@ function getBestWord(queryPath)
 	// 	alert(bestWord + " " + minScore);
 	// 	halt = false;
 	// });
-}
+
 
 var noseRecorded = false;
 function recordNoseLength(currPos)
