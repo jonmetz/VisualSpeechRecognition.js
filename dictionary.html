@@ -1,13 +1,15 @@
 <html>
   <head>
+    <link href="./styles/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="./styles/clm_video.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.firebase.com/js/client/2.0.6/firebase.js"></script>
     <script src="js/db.js"></script>
+    <script src="js/dictionary.js"></script>
   </head>
-  <body>
+  <body onload="doOnLoad();">
     Words:
     <div id="dictionary">
       Loading words
     </div>
-    <script src="js/dictionary.js"></script>
   </body>
 </html>
