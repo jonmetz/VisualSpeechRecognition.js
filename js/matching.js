@@ -89,9 +89,40 @@ function getScore(A, B, i, j) {
 
   var cost = Math.pow(A[i-1] - B[j-1], 2);
 
-  var a1 = getScore(A, B, i-1, j-1) + cost;
-  var a2 = getScore(A, B, i-1, j);
-  memo[i][j] = Math.min(a1, a2);
+var dictionary = ["potato", "colonoscopy", "diabetes", "computer"];
+function getBestWord(queryPath)
+{
+	if(!confirm("Test with this query?"))
+		return;
+
+	alert("Currently finding best word");
+	var minScore = INF;
+	var bestWord = "NOT FOUND";
+
+	var results = [];
+	var halt = true;
+	firebase.child("calibrationMatrices").on("value", function(snapshot) {
+		if(calibrateModeOn)
+			return;
+		var calib = snapshot.val();
+		for(var i = 0; i < dictionary.length; i++) //compare against each word
+		{
+			var word = dictionary[i];
+
+			var wordPath = calib[word];
+			var score = calcSimilarity(wordPath, queryPath);
+			alert("Word being tested now is: " + dictionary[i] + ". Score: " + score);
+			results.push([word, score]);
+
+			if(score < minScore)
+			{
+				minScore = score;
+				bestWord = word;
+			}
+		}
+		alert("Best match: " + bestWord + ". Score: " + minScore);
+	});
+
 
   return memo[i][j];
 }
@@ -131,6 +162,7 @@ if(!confirm("Test with this query?"))
 }
 
 var noseRecorded = false;
+<<<<<<< HEAD
 function recordNoseLength(currPos) {
   //record only once
   if(noseRecorded)
@@ -151,6 +183,21 @@ function setScale(currPos) {
       noseLength = snapshot.val();
     });
   }
+
+function recordNoseLength(currPos)
+{
+	//record only once
+	// if(noseRecorded)
+	// 	return;
+	// noseRecorded = true;
+
+	var length = Math.abs(currPos[33][1] - currPos[62][1]); //length of nose bridge
+	alert("Nose set here");
+	//put in firebase
+	firebase.child("noseLength").set(length);
+	alert("Nose set here FINALLY");
+
+>>>>>>> 42788a3... fixing scaling
 }
 
 function sortfunction(a,b) {
