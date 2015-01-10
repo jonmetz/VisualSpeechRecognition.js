@@ -138,10 +138,22 @@ if(!confirm("Test with this query?"))
 
   var results = [];
   var halt = true;
+
   firebase.child("calibrationMatrices").on("value", function(snapshot) {
     var calib = snapshot.val();
     for(var i = 0; i < dictionary.length; i++) { //compare against each word
       var word = dictionary[i];
+
+  firebase.child("calibrationMatrixList").once("value", function(snapshot) {
+    var calib = snapshot.val();
+    for(var i = 0; i < calib.length; i++) { //compare against each word
+      var entry = calib[i];
+      if(entry === "undefined")
+      	continue;
+
+      console.log(entry.word);
+      var word = entry.word;
+
 
       var wordPath = calib[word];
       var score = calcSimilarity(wordPath, queryPath);
@@ -153,12 +165,47 @@ if(!confirm("Test with this query?"))
         bestWord = word;
       }
     }
+    knn(results, 5);
     // alert("Best match: " + bestWord + ". Score: " + minScore);
     document.getElementById("loading").style.display = "none";
     // draw bar chart of best five words
     drawchart(results);
     document.getElementById("chart").style.display = "block";
   });
+}
+
+function mode(array)
+{
+    if(array.length == 0)
+    	return null;
+    var modeMap = {};
+    var maxEl = array[0], maxCount = 1;
+    for(var i = 0; i < array.length; i++)
+    {
+    	var el = array[i];
+    	if(modeMap[el] == null)
+    		modeMap[el] = 1;
+    	else
+    		modeMap[el]++;
+    	if(modeMap[el] > maxCount)
+    	{
+    		maxEl = el;
+    		maxCount = modeMap[el];
+    	}
+    }
+
+    return maxEl;
+}
+
+function knn(results, k)
+{
+	//get top k matches
+	results.sort(sortfunction);
+	var neighbors = [];
+	for(var i = 0; i < Math.min(results, k); i++)
+		neighbors.push(results[i][0]);
+
+	console.log(mode(getcol(results,0)));
 }
 
 var noseRecorded = false;
@@ -197,7 +244,7 @@ function recordNoseLength(currPos)
 	firebase.child("noseLength").set(length);
 	alert("Nose set here FINALLY");
 
->>>>>>> 42788a3... fixing scaling
+
 }
 
 function sortfunction(a,b) {
