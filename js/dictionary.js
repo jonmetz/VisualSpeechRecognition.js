@@ -22,12 +22,16 @@ function displayDictionary(dictionary) {
 }
 
 function displayOldDict() {
-  var oldDict = localStorage.dictionary.split(",");
-  if (oldDict) {
-    displayDictionary(oldDict);
-    console.log("displaying old dictionary from localStorage temporarily");
+  var oldDictStr = localStorage.dictionary;
+  if (oldDictStr) {
+    var oldDict = oldDictStr.split(",");
+    if (oldDict) {
+      displayDictionary(oldDict);
+      console.log("displaying old dictionary from localStorage temporarily");
+    }
   }
 }
+
 function doOnLoad() {
   displayOldDict();
   var dictionary = getDictionary(firebase, displayDictionary, localStorage);
