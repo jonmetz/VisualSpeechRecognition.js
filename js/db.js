@@ -58,3 +58,21 @@ var askSaveCalibrationMatrix = function(word, matrix) {
   }
   return saved;
 }
+
+function refDataOnce(ref, cback, errCback) {
+  ref.once('value', cback, errCback);
+}
+
+function getWordsFromCalMatList(callback, errCback) {
+  var calibrationMatrixListRef = firebase.child('calibrationMatrixList');
+  refDataOnce(calibrationMatrixListRef, callback, errCback);
+}
+
+function calMatList2WordList(calMatList) {
+  var len = calMatList.length;
+  var wordList = [];
+  for (var matrixInd = 1; matrixInd < len; matrixInd++) {
+    wordList[matrixInd - 1] = calMatList[matrixInd].word;
+  }
+  return wordList;
+}
