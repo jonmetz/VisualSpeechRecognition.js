@@ -96,82 +96,70 @@ function drawLoop() {
 
   var currPos = ctrack.getCurrentPosition()
 
-	if (currPos) {
-		drawLips(overlay, currPos);
-		displayPoints(currPos);
 
-		if(calibrateModeOn)
-			scale = 1;
-		else
-			scale = noseLength / Math.abs(currPos[33][1] - currPos[62][1]);
+  if (currPos) {
+    drawLips(overlay, currPos);
+    displayPoints(currPos);
 
-		if(paths.length < MIN_PATHS_LENGTH || spokenTimer > 0) //fill to 25 or currently speaking
-			addPoints(paths, currPos);
-		else //more than 25 frames
-		{
-			while(paths.length >= MIN_PATHS_LENGTH)
-				paths.shift() //get rid of oldest by removing from front
-			addPoints(paths, currPos); //insert newest frame
-		}
-		document.getElementById('message').innerHTML = paths.length;
+	if(calibrateModeOn)
+		scale = 1;
+	else
+		scale = noseLength / Math.abs(currPos[33][1] - currPos[62][1]);
 
-		var isOpen = getMouthDistances(currPos);
+    if(paths.length < MIN_PATHS_LENGTH || spokenTimer > 0) //fill to 25 or currently speaking
+      addPoints(paths, currPos);
+    else { //more than 25 frames
+      while(paths.length >= MIN_PATHS_LENGTH)
+        paths.shift() //get rid of oldest by removing from front
+      addPoints(paths, currPos); //insert newest frame
+    }
+    document.getElementById('message').innerHTML = paths.length;
 
-		if(isOpen) //currently speaking, increment
-		{
-			spokenTimer++;
-			if(prevIsOpen == false) //went from closed to open
-				spokenTimer += closedTimer; //b/c closed interval counts as speaking
+    var isOpen = getMouthDistances(currPos);
 
-			closedTimer = 0;
-		}
-		if(prevIsOpen == true && isOpen == false) //goes from open to closed
-		{
-			//increment both timers
-			spokenTimer++; //could possibly still be speaking, increment
-			closedTimer++; //mouth is closed, so increment
-		}
-		else if(isOpen == false && closedTimer > 0) //mouth is closed and closedTimer has begun
-		{
-			if(closedTimer < CLOSED_LIMIT)
-				closedTimer++;
-			else //reached threshold of closedTimer, assume mouth is closed indefinitely now
-			{
-				//code executes when user finishes speaking!
-				if(spokenTimer > SPOKEN_LIMIT)
-				{
-					var pathStr = document.getElementById('paths');
-					pathStr.innerHTML = "";
-					for(var i = 0; i < paths[0].length; i++) //first frame, 18 points
-					{
-						pathStr.innerHTML += "Point " + i + ": " + ptToString(paths[0][i][0], paths[0][i][1]);
-					}
+    if(isOpen) { //currently speaking, increment
+      spokenTimer++;
+      if(prevIsOpen == false) //went from closed to open
+        spokenTimer += closedTimer; //b/c closed interval counts as speaking
 
-					//deep copy of paths
-					var pathsCopy = [];
-					while(paths.length > 0)
-						pathsCopy.push(paths.shift());
+      closedTimer = 0;
+    }
+    if(prevIsOpen == true && isOpen == false) { //goes from open to closed
+      //increment both timers
+      spokenTimer++; //could possibly still be speaking, increment
+      closedTimer++; //mouth is closed, so increment
+    } else if(isOpen == false && closedTimer > 0) { //mouth is closed and closedTimer has begun
+      if(closedTimer < CLOSED_LIMIT)
+        closedTimer++;
+      else { //reached threshold of closedTimer, assume mouth is closed indefinitely now
+        //code executes when user finishes speaking!
+        if(spokenTimer > SPOKEN_LIMIT) {
+          var pathStr = document.getElementById('paths');
+          pathStr.innerHTML = "";
+          for(var i = 0; i < paths[0].length; i++) { //first frame, 18 points
+            pathStr.innerHTML += "Point " + i + ": " + ptToString(paths[0][i][0], paths[0][i][1]);
+          }
 
-					if(calibrateModeOn) //calibration mode
-					{
-						var inputWord = prompt("What word spoken?");
-						askSaveCalibrationMatrix(inputWord, pathsCopy);
-					}
-					else //testing mode
-					{
-						console.log("displaying");
-						getBestWord(pathsCopy);
-					}
-				}
-				closedTimer = spokenTimer = 0;
-			}
+          //deep copy of paths
+          var pathsCopy = [];
+          while(paths.length > 0)
+            pathsCopy.push(paths.shift());
 
-		}
+          if(calibrateModeOn) { //calibration mode
+          	spokenTimer = 0;
+            var inputWord = prompt("What word spoken?");
+            askSaveCalibrationMatrix(inputWord, pathsCopy);
+            recordNoseLength(currPos); //assumes user's head is in a good position
+          } else { //testing mode
+            getBestWord(pathsCopy);
+          }
 
-		prevIsOpen = isOpen;
-		document.getElementById('spokenTimer').innerHTML = spokenTimer + "<br/>";
-		document.getElementById('closedTimer').innerHTML = closedTimer + "<br/>";
-	}
+          paths = [];
+        }
+        closedTimer = spokenTimer = 0;
+      }
+    }
+
 
 }
 
