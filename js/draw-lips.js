@@ -37,7 +37,7 @@ function displayPoints(currPos) {
 }
 
 function getMouthDistances(currPos) {
-  var THRESHOLD = 15;
+  // global var THRESHOLD was set with setthreshold()
 
   var distString = "";
   var xDiff = scale*(currPos[60][0] - currPos[57][0]);

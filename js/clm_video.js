@@ -12,8 +12,36 @@ document.getElementById('container').appendChild( stats.domElement );
 
 function enablestart() {
   var startbutton = document.getElementById('startbutton');
-  startbutton.value = "start";
+  startbutton.value = "my mouth is closed";
   startbutton.disabled = null;
+  // start tracking
+  ctrack.start(vid);
+  // start loop to draw face
+  drawLoop();
+}
+
+function setThreshold() {
+  var currPos = ctrack.getCurrentPosition()
+  var yDiff = currPos[60][1] - currPos[57][1];
+  var yDiffSq = Math.pow(yDiff,2);
+  // global var THRESHOLD to tell if mouth closed
+  THRESHOLD = Math.abs(yDiffSq);
+
+  var startbutton = document.getElementById('startbutton');
+  startbutton.value = 'recording...';
+  startbutton.disabled = true;
+  startRec();
+}
+
+function drawLoop() {
+  requestAnimFrame(drawLoop);
+  overlayCC.clearRect(0, 0, 400, 300);
+
+  var currPos = ctrack.getCurrentPosition()
+  if (currPos) {
+    drawLips(overlay, currPos);
+    displayPoints(currPos);
+  }
 }
 
 var insertAltVideo = function(video) {
@@ -66,7 +94,7 @@ if (navigator.getUserMedia) {
 vid.addEventListener('canplay', enablestart, false);
 
 var noseLength;
-function startVideo() {
+function startRec() {
   //load nose length first
   firebase.child("noseLength").on("value", function(snapshot) {
     noseLength = snapshot.val();
@@ -74,9 +102,9 @@ function startVideo() {
     // start video
     vid.play();
     // start tracking
-    ctrack.start(vid);
+    // ctrack.start(vid);
     // start loop to draw face
-    drawLoop();
+    calcLoop();
   });
 }
 
@@ -90,8 +118,9 @@ var prevIsOpen = false;
 var CLOSED_LIMIT = 25*1; //1 "second" worth of frames
 var SPOKEN_LIMIT = 25*.6;
 var MIN_PATHS_LENGTH = 25;
-function drawLoop() {
-  requestAnimFrame(drawLoop);
+
+function calcLoop() {
+  requestAnimFrame(calcLoop);
   overlayCC.clearRect(0, 0, 400, 300);
 
   var currPos = ctrack.getCurrentPosition()

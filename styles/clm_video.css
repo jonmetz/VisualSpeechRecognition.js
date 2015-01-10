@@ -32,6 +32,12 @@ a:hover {
   max-width: 800px;
 }
 
+#words {
+  width: 300px;
+  margin: 40px auto;
+  font-size: 18px;
+}
+
 #left {
   float: left;
   margin: 40px 0 40px 0;

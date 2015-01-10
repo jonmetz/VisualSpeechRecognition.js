@@ -43,7 +43,7 @@
   </div>
 
 <!-- start/calibration buttons -->
-<input class="btn" type="button" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton">
+<input class="btn" type="button" value="wait, loading video" disabled="disabled" onclick="setThreshold()" id="startbutton">
 <input class="btn" type="button" value="calibrate?" disabled="disabled" onclick="toggleCalibrationMode()" id="calibrationbutton">
 
 <!-- best match chart -->
@@ -55,7 +55,7 @@
 
 <!-- instructions -->
 <div id="text">
-  <p>INSERT OUR INSTRUCTIONS HERE</p>
+  <p>This is an example of visual speech recognition specific to a user-trained dictionary. We use a shape comparison algorithm that scales the sample length then compares geometric distances with a dynamic programming approach. We adapt the deformable face alignment method using constrained local models (CLM) from the javascript library <a href="https://github.com/auduno/clmtrackr"><b>clmtrackr</b></a>.
   <p>Note: this example works best in Google Chrome, with a computer that supports WebGL and floating point textures. It should however work in any modern browser.</p>
 
   <div id="gum" class="gum">
