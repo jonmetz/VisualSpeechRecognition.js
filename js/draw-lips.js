@@ -40,8 +40,8 @@ function getMouthDistances(currPos) {
   var THRESHOLD = 15;
 
   var distString = "";
-  var xDiff = currPos[60][0] - currPos[57][0];
-  var yDiff = currPos[60][1] - currPos[57][1];
+  var xDiff = scale*(currPos[60][0] - currPos[57][0]);
+  var yDiff = scale*(currPos[60][1] - currPos[57][1]);
   var xDiffSq = Math.pow(xDiff,2);
   var yDiffSq = Math.pow(yDiff,2);
 
@@ -74,7 +74,7 @@ function addPoints(deque, currPos)
   var shifted = [];
   for(var i = 0; i < lipPoints.length; i++)
   {
-    shifted.push([lipPoints[i][0] - noseX, lipPoints[i][1] - noseY]);
+    shifted.push([scale*(lipPoints[i][0] - noseX), scale*(lipPoints[i][1] - noseY)]);
   }
   deque.push(shifted);
 }
