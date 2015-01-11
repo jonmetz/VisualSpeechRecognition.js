@@ -205,7 +205,8 @@ function knn(results, k)
 	for(var i = 0; i < Math.min(results, k); i++)
 		neighbors.push(results[i][0]);
 
-	console.log(mode(getcol(results,0)));
+	// console.log(mode(getcol(results,0)));
+	document.getElementById("bestMatch").innerHTML = mode(getcol(results,0));
 }
 
 var noseRecorded = false;
