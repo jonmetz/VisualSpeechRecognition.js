@@ -15,6 +15,7 @@ j: how many frames are left in B
 var INF = 500000;
 var memo;
 var MAX_SIZE_SCALE = .9;
+var MIN_SIZE_SCALE = .9;
 
 function calcSimilarity(word, query) {
   //initialize DP table with zeros. Matrix of size [word.length+1][query.length+1]
@@ -24,6 +25,11 @@ function calcSimilarity(word, query) {
     for(var j = 0; j <= query.length; j++)
       memo[i].push(0);
   }
+
+  // //if query is too short
+  // if(query.length < MIN_SIZE_SCALE * word.length) { //must elongate
+
+  // }
 
   //check if word is of appropriate length
   if(query.length <= MAX_SIZE_SCALE * word.length)
@@ -150,12 +156,13 @@ function getBestWord(queryPath) {
       if(entry === "undefined")
       	continue;
 
-      console.log(entry.word);
+      // console.log(entry.word);
       var word = entry.word;
 
 
       var wordPath = calib[word];
       var score = calcSimilarity(wordPath, queryPath);
+
       // alert("Word being tested now is: " + dictionary[i] + ". Score: " + score);
       results.push([word, score]);
 
@@ -165,6 +172,7 @@ function getBestWord(queryPath) {
       }
     }
     knn(results, 5);
+    console.log("Closest when k=1: " + bestWord);
     // alert("Best match: " + bestWord + ". Score: " + minScore);
     document.getElementById("loading").style.display = "none";
     // draw bar chart of best five words
@@ -198,14 +206,15 @@ function mode(array)
 
 function knn(results, k)
 {
+	// k=1;
 	//get top k matches
 	results.sort(sortfunction);
 	var neighbors = [];
-	for(var i = 0; i < Math.min(results, k); i++)
+	for(var i = 0; i < k; i++)
 		neighbors.push(results[i][0]);
 
-	// console.log(mode(getcol(results,0)));
-	document.getElementById("bestMatch").innerHTML = mode(getcol(results,0));
+	console.log("For k=5: " + mode(neighbors));
+	document.getElementById("bestMatch").innerHTML = mode(neighbors);
 }
 
 var noseRecorded = false;
