@@ -128,8 +128,7 @@ function getBestWord(queryPath)
 }
 
 function getBestWord(queryPath) {
-var dictionary = ["potato", "colonoscopy", "diabetes", "computer"];
-if(!confirm("Test with this query?"))
+  if(!confirm("Test with this query?"))
     return;
   document.getElementById("chart").style.display = "none";
   document.getElementById("loading").style.display = "block";
@@ -210,7 +209,7 @@ function knn(results, k)
 }
 
 var noseRecorded = false;
-<<<<<<< HEAD
+
 function recordNoseLength(currPos) {
   //record only once
   if(noseRecorded)
@@ -221,30 +220,6 @@ function recordNoseLength(currPos) {
 
   //put in firebase
   firebase.child("noseLength").set(length);
-
-}
-
-function setScale(currPos) {
-  var length = Math.abs(currPos[33][1] - currPos[62][1]); //length of nose bridge
-  if(noseLength == -1) {
-    firebase.child("noseLength").on("value", function(snapshot) {
-      noseLength = snapshot.val();
-    });
-  }
-
-function recordNoseLength(currPos)
-{
-	//record only once
-	// if(noseRecorded)
-	// 	return;
-	// noseRecorded = true;
-
-	var length = Math.abs(currPos[33][1] - currPos[62][1]); //length of nose bridge
-	alert("Nose set here");
-	//put in firebase
-	firebase.child("noseLength").set(length);
-	alert("Nose set here FINALLY");
-
 
 }
 

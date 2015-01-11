@@ -55,7 +55,7 @@ function getMouthDistances(currPos) {
     isOpen = true;
   }
 
-  document.getElementById('mouthDist').innerHTML = distString;
+  // document.getElementById('mouthDist').innerHTML = distString;
   return isOpen;
 }
 
