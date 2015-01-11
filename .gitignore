@@ -2,3 +2,6 @@
 *~
 \#*\#
 core
+*.log
+*.synctex.gz
+*.aux
