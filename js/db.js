@@ -68,11 +68,17 @@ function getWordsFromCalMatList(callback, errCback) {
   refDataOnce(calibrationMatrixListRef, callback, errCback);
 }
 
-function calMatList2WordList(calMatList) {
+function calMatList2WordList(calMatList, dontPrune) {
+
   var len = calMatList.length;
   var wordList = [];
   for (var matrixInd = 1; matrixInd < len; matrixInd++) {
     wordList[matrixInd - 1] = calMatList[matrixInd].word;
+  }
+  if (!dontPrune) {
+    wordList = wordList.filter(function(elem, pos) {
+                 return wordList.indexOf(elem) == pos;
+               });
   }
   return wordList;
 }
