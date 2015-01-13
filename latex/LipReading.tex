@@ -6,7 +6,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
-
+\graphicspath{ {images/} }
 % Include other packages here, before hyperref.
 
 % If you comment hyperref and then uncomment it, you should delete
@@ -25,7 +25,7 @@
 \begin{document}
 
 %%%%%%%%% TITLE
-\title{\LaTeX\ Author Guidelines for CVPR Proceedings}
+\title{Gurrl lemme see dem plumpilicious lips: Visual Speech Reconstruction from Lip Motions}
 
 \author{Mouse Lee\\
 {\tt\small jl27@princeton.edu}
@@ -37,8 +37,6 @@ Bo Moon\\
 {\tt\small bhmoon@princeton.edu}
 }
 
-
-
 \maketitle
 %\thispagestyle{empty}
 
@@ -48,232 +46,6 @@ Bo Moon\\
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
-\section{Introduction}
-
-Please follow the steps outlined below when submitting your manuscript to
-the IEEE Computer Society Press.  This style guide now has several
-important modifications (for example, you are no longer warned against the
-use of sticky tape to attach your artwork to the paper), so all authors
-should read this new version.
-
-%-------------------------------------------------------------------------
-\subsection{Language}
-
-All manuscripts must be in English.
-
-\subsection{Dual submission}
-
-Please refer to the author guidelines on the CVPR 2015 web page for a
-discussion of the policy on dual submissions.
-
-\subsection{Paper length}
-For CVPR 2015, the rules about paper length have changed, so please
-read this section carefully. Papers, excluding the references section,
-must be no longer than eight pages in length. The references section
-will not be included in the page count, and there is no limit on the
-length of the references section. For example, a paper of eight pages
-with two pages of references would have a total length of 10 pages.
-{\bf Unlike previous years, there will be no extra page charges for
-  CVPR 2015.}
-
-Overlength papers will simply not be reviewed.  This includes papers
-where the margins and formatting are deemed to have been significantly
-altered from those laid down by this style guide.  Note that this
-\LaTeX\ guide already sets figure captions and references in a smaller font.
-The reason such papers will not be reviewed is that there is no provision for
-supervised revisions of manuscripts.  The reviewing process cannot determine
-the suitability of the paper for presentation in eight pages if it is
-reviewed in eleven.
-
-%-------------------------------------------------------------------------
-\subsection{The ruler}
-The \LaTeX\ style defines a printed ruler which should be present in the
-version submitted for review.  The ruler is provided in order that
-reviewers may comment on particular lines in the paper without
-circumlocution.  If you are preparing a document using a non-\LaTeX\
-document preparation system, please arrange for an equivalent ruler to
-appear on the final output pages.  The presence or absence of the ruler
-should not change the appearance of any other content on the page.  The
-camera ready copy should not contain a ruler. (\LaTeX\ users may uncomment
-the \verb'\cvprfinalcopy' command in the document preamble.)  Reviewers:
-note that the ruler measurements do not align well with lines in the paper
---- this turns out to be very difficult to do well when the paper contains
-many figures and equations, and, when done, looks ugly.  Just use fractional
-references (e.g.\ this line is $095.5$), although in most cases one would
-expect that the approximate location will be adequate.
-
-\subsection{Mathematics}
-
-Please number all of your sections and displayed equations.  It is
-important for readers to be able to refer to any particular equation.  Just
-because you didn't refer to it in the text doesn't mean some future reader
-might not need to refer to it.  It is cumbersome to have to use
-circumlocutions like ``the equation second from the top of page 3 column
-1''.  (Note that the ruler will not be present in the final copy, so is not
-an alternative to equation numbers).  All authors will benefit from reading
-Mermin's description of how to write mathematics:
-\url{http://www.pamitc.org/documents/mermin.pdf}.
-
-
-\subsection{Blind review}
-
-Many authors misunderstand the concept of anonymizing for blind
-review.  Blind review does not mean that one must remove
-citations to one's own work---in fact it is often impossible to
-review a paper unless the previous citations are known and
-available.
-
-Blind review means that you do not use the words ``my'' or ``our''
-when citing previous work.  That is all.  (But see below for
-techreports.)
-
-Saying ``this builds on the work of Lucy Smith [1]'' does not say
-that you are Lucy Smith; it says that you are building on her
-work.  If you are Smith and Jones, do not say ``as we show in
-[7]'', say ``as Smith and Jones show in [7]'' and at the end of the
-paper, include reference 7 as you would any other cited work.
-
-An example of a bad paper just asking to be rejected:
-\begin{quote}
-\begin{center}
-    An analysis of the frobnicatable foo filter.
-\end{center}
-
-   In this paper we present a performance analysis of our
-   previous paper [1], and show it to be inferior to all
-   previously known methods.  Why the previous paper was
-   accepted without this analysis is beyond me.
-
-   [1] Removed for blind review
-\end{quote}
-
-
-An example of an acceptable paper:
-
-\begin{quote}
-\begin{center}
-     An analysis of the frobnicatable foo filter.
-\end{center}
-
-   In this paper we present a performance analysis of the
-   paper of Smith \etal [1], and show it to be inferior to
-   all previously known methods.  Why the previous paper
-   was accepted without this analysis is beyond me.
-
-   [1] Smith, L and Jones, C. ``The frobnicatable foo
-   filter, a fundamental contribution to human knowledge''.
-   Nature 381(12), 1-213.
-\end{quote}
-
-If you are making a submission to another conference at the same time,
-which covers similar or overlapping material, you may need to refer to that
-submission in order to explain the differences, just as you would if you
-had previously published related work.  In such cases, include the
-anonymized parallel submission~\cite[]{Dupont} as additional material and
-cite it as
-\begin{quote}
-[1] Authors. ``The frobnicatable foo filter'', F\&G 2014 Submission ID 324,
-Supplied as additional material {\tt fg324.pdf}.
-\end{quote}
-
-Finally, you may feel you need to tell the reader that more details can be
-found elsewhere, and refer them to a technical report.  For conference
-submissions, the paper must stand on its own, and not {\em require} the
-reviewer to go to a techreport for further details.  Thus, you may say in
-the body of the paper ``further details may be found
-in~\cite{Dupont}''.  Then submit the techreport as additional material.
-Again, you may not assume the reviewers will read this material.
-
-Sometimes your paper is about a problem which you tested using a tool which
-is widely known to be restricted to a single institution.  For example,
-let's say it's 1969, you have solved a key problem on the Apollo lander,
-and you believe that the CVPR70 audience would like to hear about your
-solution.  The work is a development of your celebrated 1968 paper entitled
-``Zero-g frobnication: How being the only people in the world with access to
-the Apollo lander source code makes us a wow at parties'', by Zeus \etal.
-
-You can handle this paper like any other.  Don't write ``We show how to
-improve our previous work [Anonymous, 1968].  This time we tested the
-algorithm on a lunar lander [name of lander removed for blind review]''.
-That would be silly, and would immediately identify the authors. Instead
-write the following:
-\begin{quotation}
-\noindent
-   We describe a system for zero-g frobnication.  This
-   system is new because it handles the following cases:
-   A, B.  Previous systems [Zeus et al. 1968] didn't
-   handle case B properly.  Ours handles it by including
-   a foo term in the bar integral.
-
-   ...
-
-   The proposed system was integrated with the Apollo
-   lunar lander, and went all the way to the moon, don't
-   you know.  It displayed the following behaviours
-   which show how well we solved cases A and B: ...
-\end{quotation}
-As you can see, the above text follows standard scientific convention,
-reads better than the first version, and does not explicitly name you as
-the authors.  A reviewer might think it likely that the new paper was
-written by Zeus \etal, but cannot make any decision based on that guess.
-He or she would have to be sure that no other authors could have been
-contracted to solve problem B.
-
-FAQ: Are acknowledgements OK?  No.  Leave them for the final copy.
-
-
-\begin{figure}[t]
-\begin{center}
-\fbox{\rule{0pt}{2in} \rule{0.9\linewidth}{0pt}}
-   %\includegraphics[width=0.8\linewidth]{egfigure.eps}
-\end{center}
-   \caption{Example of caption.  It is set in Roman so that mathematics
-   (always set in Roman: $B \sin A = A \sin B$) may be included without an
-   ugly clash.}
-\label{fig:long}
-\label{fig:onecol}
-\end{figure}
-
-\subsection{Miscellaneous}
-
-\noindent
-Compare the following:\\
-\begin{tabular}{ll}
- \verb'$conf_a$' &  $conf_a$ \\
- \verb'$\mathit{conf}_a$' & $\mathit{conf}_a$
-\end{tabular}\\
-See The \TeX book, p165.
-
-The space after \eg, meaning ``for example'', should not be a
-sentence-ending space. So \eg is correct, {\em e.g.} is not.  The provided
-\verb'\eg' macro takes care of this.
-
-When citing a multi-author paper, you may save space by using ``et alia'',
-shortened to ``\etal'' (not ``{\em et.\ al.}'' as ``{\em et}'' is a complete word.)
-However, use it only when there are three or more authors.  Thus, the
-following is correct: ``
-   Frobnication has been trendy lately.
-   It was introduced by Alpher~\cite{Dupont}, and subsequently developed by
-   Alpher and Fotheringham-Smythe~\cite{Dupont}, and Alpher \etal~\cite{Dupont}.''
-
-This is incorrect: ``... subsequently developed by Alpher \etal~\cite{Dupont} ...''
-because reference~\cite{Dupont} has just two authors.  If you use the
-\verb'\etal' macro provided, then you need not worry about double periods
-when used at the end of a sentence as in Alpher \etal.
-
-For this citation style, keep multiple citations in numerical (not
-chronological) order, so prefer \cite{Dupont} to
-\cite{Dupont}.
-
-
-\begin{figure*}
-\begin{center}
-\fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
-\end{center}
-   \caption{Example of a short caption, which should be centered.}
-\label{fig:short}
-\end{figure*}
-
 %------------------------------------------------------------------------
 \section{Motivation}
 \subsection{Why do this}
@@ -295,6 +67,7 @@ We believe that our system is resilient to some of these challenges, and perform
 \subsection{What has been done}
 Speech recognition has gone from academic research interest to an essential part of the way user interact with computing devices ~\cite{Lison:2014:SDS:2677339.2659891}.
 Most of these technologies rely solely on acoustic data. However, an obvious drawback of these systems is that their performace is severly degraded by noise ~\cite{Cooke2001267}. Research has shown that systems that use visual data in place of, or in addittion to audio data, can significantly outperform systems that only use audio data in the presence of noise ~\cite{Lison:2014:SDS:2677339.2659891}.
+
 \subsection{What are the problems}
 Most other research, with a few exceptions focuses mainly on acoustic recognition, with visual recognition used as a secondary means of recognition. We thought that using a purely vision based approach would be an interesting challenge, and provide some of the advantages outlined above.
 Another difference between our approach and those of most other VSR systems is that most of them try to detect visual phenomes, or visemes, rather than actual words.
@@ -320,10 +93,16 @@ First we will present an outline of how the program operates, and then afterward
 \subsection{Obtaining and Representing Data}
 Our program makes use of the Javascript clmtracker library (https://github.com/auduno/clmtrackr).
 It uses Constrained Local Models, a technique for finding statistical estimates of coordinates on an object based on its shape, combined with trained support vector machines to identify and track many facial landmarks, as seen below.
-INCLUDE IMAGE!!!
+
+\begin{figure}[h]
+\centering
+\includegraphics{bo1}
+\caption{The various facial landmarks detected by the CLM tracker.}
+\end{figure}
+
 The CLM tracker library is used to identify and track 18 points on the lip. These 18 points are represented by and pixel coordinates for each frame; thus, the program represents each frame as an array of 18 points, also interpreted as a matrix of 18 rows and 2 columns:
 \begin{equation}
-  f = [(x_1, y_1), (x_2, y_2), \ldots, (x_{18}, y_{18})
+  f = [(x_1, y_1), (x_2, y_2), \ldots, (x_{18}, y_{18})]
 \end{equation}
 The program represents a word as an array of all consecutive frames in which the user was speaking, plus 25 additional frames before and after speaking as a buffer to capture initial and final lip motions. For instance, if the program detected that the user spoke for frames, then the word is stored as
 \begin{equation}
@@ -335,23 +114,36 @@ where the first 25 frames are immediately before when the program detects the st
 The points obtained by the CLM tracker are stored in pixel coordinates. As such, these coordinates are highly sensitive to various geometric transformations such as rotations and translations, which make the points difficult to handle for algorithms and computations. Ideally, lip point coordinates will change only when there is lip motion, as in speech. We can implement some measures to reduce or ignore undesirable motion.
 \subsubsection{Translations}
 Translations occur when the user moves his/her face around the screen (assuming the face does not turn/rotate).
-INCLUDE IMAGE
+
+\begin{figure}[h]
+\centering
+\includegraphics{bo2}
+\caption{An example of translation.}
+\end{figure}
+
 Consider the pixel coordinates of the right corner of the lip in the figure above. Even though the lip is in the same position on the face, the pixel coordinates before and after the translation are different because the entire face has moved. However, note that the position of that particular point has not changed relative to any other point on the face since all points on the face have been translated the same amount. As such, we can make lip point coordinates resistant to translations by transforming the coordinates into a new coordinate system with the origin somewhere on the face. This way, translating the face would translate the entire coordinate system, so no lip point coordinates would be changed.
 In our program we accomplish this by imposing a coordinate system on the tip of the nose, although any facial feature would have worked. Specifically, for every lip point $(x, y)$ in pixel coordinates and the pixel coordinates of the tip of the nose $(nose_x, nose_y)$, the new coordinates are a position vector in the form
 \begin{equation}
   p = (nose_x - x, nose_y - y)
 \end{equation}
+
 \subsubsection{Scaling}
-INCLUDE IMAGE!!!
+
+\begin{figure}[h]
+\centering
+\includegraphics{bo3}
+\caption{An example of scaling.}
+\end{figure}
+
 The face in the video changes scale when the user changes his/her distance to the camera, e.g. the face becomes larger when the user is closer and shrinks when the user is farther away. The coordinates of  are still sensitive to scaling. However, when the face changes scale, all lengths on the face are scaled by the same amount, so the face before and after scaling are geometrically similar. Therefore, by using simple geometry, we can find ratio of lengths on the face to calculate this scaling factor.
 The CLM tracker also tracks the nose bridge. During the calibration phase, the nose bridge length of the user face is recorded. Later, during the testing phase, the scaling factor is calculated by
 \begin{equation}
   s = \frac{\textrm{recorded nose length}}{\textrm{current nose length}}
 \end{equation}
 
-where  is the nose length recorded during calibration and  is the nose length of the face in the current frame. Afterwards, this scaling factor is used to scale all lip points per frame as such:
+where the the recorded and current nose lengths are the nose lengths obtained during calibration and in the current frame, respectively. Afterwards, this scaling factor is used to scale all lip points per frame as such:
 \begin{equation}
-  p' = s \times p = (s(nose_x - X), s(nose_y - y))
+  p' = s \times p = (s(nose_x - x), s(nose_y - y))
 \end{equation}
 \subsubsection{Rotations}
 Rotations occur when the user rotates his/her face. This is a significant problem since if the user’s face rotates too much, the coordinate system based on the nose would not rotate with the face, so coordinates of each point would be incorrect. The simplest solution to this problem is to avoid having rotations altogether. As such, we require that the user’s face looks straight on into the camera, i.e. the optical axis of the camera is orthogonal to the plane of the face, and the head is not tilted.
@@ -379,23 +171,41 @@ An array is used to store the relevant frames in the meantime, and when the user
 \subsection{Comparing Words}
 When the query is obtained, it is stored as an array of frames $q$. Furthermore, all words in the dictionary database are stored as a tuple of a string representing the word itself and an array of frames spoken during calibration. In order to find the best matching word in the dictionary, we need some way to measure the similarity between the query array $q$ and a dictionary word array $w$.
 
-We can describe this problem geometrically, but to simplify the description, we will consider only one point on the lip, then later generalize to all 18 lip points. For now, let $q = (q_1, q_2, q_3, \ldots, q_n)$ be a sequence of coordinates such that $q_i = (x_i^q, y_i^q)$ are the coordinates of a lip point during the ith frame of speaking a query, and there are $n$ such coordinates in total. Similarly, let $w = (w_1, w_2, w_3, \ldots, w_n)$ be a sequence of frames such that $w_i = (x_i^w, y_i^w)$ are the coordinates of a lip point during the ith frame of speaking a dictionary word, and there are m such coordinates in total.
-INCLUDE IMAGE!!
+We can describe this problem geometrically, but to simplify the description, we will consider only one point on the lip, then later generalize to all 18 lip points. For now, let $q = (q_1, q_2, q_3, \ldots, q_n)$ be a sequence of coordinates such that $q_i = (x_i^q, y_i^q)$ are the coordinates of a lip point during the ith frame of speaking a query, and there are $n$ such coordinates in total. Similarly, let $w = (w_1, w_2, w_3, \ldots, w_m)$ be a sequence of frames such that $w_i = (x_i^w, y_i^w)$ are the coordinates of a lip point during the ith frame of speaking a dictionary word, and there are $m$ such coordinates in total.
+
+\begin{figure}[h]
+\centering
+\includegraphics{bo4}
+\caption{Two possible curves if the coordinates in $q$ and $w$ are connected.}
+\end{figure}
+
 If the coordinates stored in the array $q$ are plotted and connected, they form the curve that the lip point travels across those frames; the same is true for $w$. As such, the problem of finding the similarity between a query and a word can be posed as determining how “similar” two curves are. If $n = m$ (that is, if the query and word are the exact same number of frames) then a natural metric to use is the sum of squared distances between the corresponding coordinates:
 \begin{equation}
   error(q,w)=\sum_{i=1}^{n} \| q_i-w_i \| ^2
 \end{equation}
-where $||q_i-w_i|| = \sqrt{(x_i^q - x_i^w)^2 + (y_i^q - x_i^w)^2}$ is the distance function. With this, a smaller error corresponds to a more similar curve. However, this metric is problematic because it is exceedingly rare that a user will say two words for exactly the same number of frames, even if those words were the same. The inconsistency in the length of the arrays also makes it difficult to apply a machine learning algorithm, since a feature vector would have to be engineered to compensate for arrays of variable dimensions. As such, another metric is needed.
-INCLUDE PICTURE!!
-Consider the two curves q and w for $n < m$ (that is, the query is spoken for fewer frames than the word in the dictionary). Since q is shorter than w, it is possible to align q in various ways such that the relative ordering of the elements of q is preserved but the corresponding elements in w are different, as in the figure. For each of these alignments, we can still calculate the sum of squared distances by taking pairs of corresponding entries, despite the fact that q is shorter than w. As such, we define a similarity metric between q and w to be the minimum possible score obtainable among all possible alignments of q to w and taking the sum of squared distances. Interpreted geometrically, this metric is calculated by splitting the curve q into multiple strands, then trying to align each of those strands against w while maintaining the correct order of strands, as in Figure 6. Furthermore, we must attempt all possible splits and all possible number of strands that can be made from q.
-INCLUDE PICTURE!!!
-To calculate this metric, we use a dynamic programming algorithm. Let $M(i,j)$ be the similarity metric between the sequences $(q_1, q_2, q_3, ldots, q_i)$ and $(w_1, w_2, w_3, ldots, w_j)$. In other words, $M(i,j)$ is the smallest score obtainable by aligning the first i coordinates of q to the first j coordinates of w. We will try to align q to w starting from the end, then align recursively. For $q_i$, there are only two possible options when aligning it to $w_j$: either $q_i$ is aligned with $w_j$, or it is not aligned. If $q_i$ is aligned with $w_j$, these two coordinates form a pair that contributes an amount of $\|q_i - w_i\|$ to the final score furthermore, the problem is now reduced to aligning $(q_1, q_2, q_3, ldots, q_i)$ to $(w_1, w_2, w_3, ldots, w_j)$. If $q_i$ is not aligned with $w_j$, then this means that $q_i$ must be aligned with some coordinate of w that comes before $w_j$; this is described by the subproblem $(q_1, q_2, q_3, ldots, q_i)$ and $(w_1, w_2, w_3, ldots, w_j)$ Thus, we can represent these relationships as
+where $||q_i-w_i|| = \sqrt{(x_i^q - x_i^w)^2 + (y_i^q - y_i^w)^2}$ is the distance function. With this, a smaller error corresponds to a more similar curve. However, this metric is problematic because it is exceedingly rare that a user will say two words for exactly the same number of frames, even if those words were the same. The inconsistency in the length of the arrays also makes it difficult to apply a machine learning algorithm, since a feature vector would have to be engineered to compensate for arrays of variable dimensions. As such, another metric is needed.
+
+\begin{figure}[h]
+\centering
+\includegraphics{bo5}
+\caption{Four possible arrangements of $q$ and $w$ with $n=4$ and $m=6$.}
+\end{figure}
+
+Consider the two curves $q$ and $w$ for $n < m$ (that is, the query is spoken for fewer frames than the word in the dictionary). Since $q$ is shorter than w, it is possible to align $q$ in various ways such that the relative ordering of the elements of $q$ is preserved but the corresponding elements in $w$ are different, as in the figure. For each of these alignments, we can still calculate the sum of squared distances by taking pairs of corresponding entries, despite the fact that $q$ is shorter than $w$.  As such, we define a similarity metric between $q$ and $w$ to be the minimum possible score obtainable among all possible alignments of $q$ to $w$ and taking the sum of squared distances. Interpreted geometrically, this metric is calculated by splitting the curve $q$ into multiple strands, then trying to align each of those strands against $w$ while maintaining the correct order of strands, as in Figure 6. Furthermore, we must attempt all possible splits and all possible number of strands that can be made from $q$.
+
+\begin{figure}[h]
+\centering
+\includegraphics{bo6}
+\caption{Blue curve is $w$, red curve is $q$. On the right, $q$ has been split to find a relatively good alignment to $w$, and ordering of the split curves is preserved.}
+\end{figure}
+
+To calculate this metric, we use a dynamic programming algorithm. Let $M(i,j)$ be the similarity metric between the sequences $(q_1, q_2, q_3, \ldots, q_i)$ and $(w_1, w_2, w_3, \ldots, w_j)$. In other words, $M(i,j)$ is the smallest score obtainable by aligning the first $i$ coordinates of $q$ to the first $j$ coordinates of $w$.  We will try to align $q$ to $w$ starting from the end, then align recursively. For $q_i$, there are only two possible options when aligning it to $w_j$: either $q_i$ is aligned with $w_j$, or it is not aligned. If $q_i$ is aligned with $w_j$, these two coordinates form a pair that contributes an amount of $\|q_i - w_i\|$ to the final score furthermore, the problem is now reduced to aligning $(q_1, q_2, q_3, \ldots, q_i)$ to $(w_1, w_2, w_3, \ldots, w_j)$. If $q_i$ is not aligned with $w_j$, then this means that $q_i$ must be aligned with some coordinate of $w$ that comes before $w_j$; this is described by the subproblem $(q_1, q_2, q_3, \ldots, q_i)$ and $(w_1, w_2, w_3, \ldots, w_j)$ Thus, we can represent these relationships as
 \begin{equation}
   M(i,j)=\textrm{min}\{M(i-1,j-1)+\| q_i-w_j \| ^2, M(i,j-1) \}
 \end{equation}
-The base cases are occur when i > j or i = j = 0. When i > j, this means that there are too many coordinates in q to align against w, so it is impossible to make an alignment; thus, $M(i, j) = \infty$. When i = j = 0, this is the trivial case of aligning an empty sequence against an empty sequence, so $M(i, j) = M(0, 0) = 0$. The time and space complexity of this algorithm is $O(nm)$ since this dynamic programming algorithm uses memoization to fill an n by m table (note this table would be a lower triangular matrix because of the base cases).
+The base cases are occur when $i > j$ or $i = j = 0$. When $i > j$, this means that there are too many coordinates in $q$ to align against w, so it is impossible to make an alignment; thus, $M(i, j) = \infty$. When $i = j = 0$, this is the trivial case of aligning an empty sequence against an empty sequence, so $M(i, j) = M(0, 0) = 0$. The time and space complexity of this algorithm is $O(nm)$ since this dynamic programming algorithm uses memoization to fill an $n$ by $m$ table (note this table would be a lower triangular matrix because of the base cases).
 
-Using this similarity metric, we can compute the score between q and w to be $M(i, j)$ for when $n < m$ (we will discuss the case when $n \ge m$ shortly). This is only for the simplified case of one lip point, but we can generalize this to all 18 lip points. Let $q = (f_1^q, f_2^q, f_3^q, \ldots f_n^q)$ be a sequence of frames that constitutes the spoken query, where $f_i^q = [(x_1^q, y_1^q), (x_2^q, y_2^q), \ldots, (x_{18}^q, y_{18}^q)$ is the array of 18 lip points as defined earlier. Define w analogously. The similarity metric is now
+Using this similarity metric, we can compute the score between $q$ and $w$ to be $M(i, j)$ for when $n < m$ (we will discuss the case when $n \ge m$ shortly). This is only for the simplified case of one lip point, but we can generalize this to all 18 lip points. Let $q = (f_1^q, f_2^q, f_3^q, \ldots f_n^q)$ be a sequence of frames that constitutes the spoken query, where $f_i^q = [(x_1^q, y_1^q), (x_2^q, y_2^q), \ldots, (x_{18}^q, y_{18}^q)]$ is the array of 18 lip points as defined earlier. Define $w$ analogously. The similarity metric is now
 \begin{equation}
   M(i,j)=\textrm{min}\{M(i-1,j-1)+\| f_i^q-f_j^w \|, M(i,j-1) \}
 \end{equation}
@@ -405,9 +215,36 @@ where we define
 \end{equation}
 or in words, the sum of squared distances between all 18 pairs of corresponding lip points in two frames.
 
-Since $M(i, j)$ is the minimum sum of squared differences between curves, it is actually a geometric error metric between q and w. This error metric can be computed for the query compared against each word in the dictionary. As such, a word with a relatively small error metric means that it has a similar shaped path to the query.
+Since $M(i, j)$ is the minimum sum of squared differences between curves, it is actually a geometric error metric between $q$ and $w$.  This error metric can be computed for the query compared against each word in the dictionary. As such, a word with a relatively small error metric means that it has a similar shaped path to the query.
 
-It appears this algorithm works only for $n < m$, or when the query is spoken faster than the word being compared. One obvious solution would be to swap q and w and call $M(m, n)$ instead. However, this does not address the main weakness of this algorithm: if $n << m$, it is likely that $M(m, n)$ will be very low, so q will be calculated to be very similar to w. This is because there are many possible alignments if the query is spoken much faster than the word, so it is more likely for a smaller score to be found. As such, the real issue is making sure that the ratio of n to m is an appropriate amount.
+It appears this algorithm works only for $n < m$, or when the query is spoken faster than the word being compared. One obvious solution would be to swap $q$ and $w$ and call $M(m, n)$ instead. However, this does not address the main weakness of this algorithm: if $n << m$, it is likely that $M(m, n)$ will be very low, so $q$ will be calculated to be very similar to $w$.  This is because there are many possible alignments if the query is spoken much faster than the word, so it is more likely for a smaller score to be found. As such, the real issue is making sure that the ratio of $n$ to $m$ is an appropriate amount.
+
+To use this algorithm, we want $am<n<bm$ for some $0<a<b<1$; in other words, we want the ratio of $n$ to $m$ to be within a certain small range. If it is the case that $n>bm$, then we can sample the query by removing frames until $n<bm$. This is analogous to taking a video clip of a person speaking and accelerating the playback by a small factor. We must remove $k=n-bm$ frames, so we remove every $\lfloor n/k  \rfloor$th frame. A value of $b=.8$ was chosen empirically for our program.
+
+If $n<am$, then we must add $l=am-b$ frames, so we pad the query by duplicating every $\lfloor n/l \rfloor$th frame. This would be analogous to taking a video clip and decelerating it by a small factor. (With the particular set of words used in this program, this latter measure did not make a significant difference, so it was not used.) Note that this technique of accelerating/decelerating the frames works under the assumption that when people speak faster or slower the speed difference is uniform; for instance, when someone says the word “orthogonal” quickly, it would not be pronounced with the first three syllables said quickly and the last syllable drawn out.
+
+One advantage of this algorithm is that it can handle instances where the query and dictionary word are not spoken for the same number of frames, which happens for virtually all queries since it extremely unlikely for a user to speak a word for the exact same amount of time as another word. A disadvantage is that when a very short query is padded to match a long word, or if a long query is sampled to match a short word, it may be possible that these processes were not the best transformations to use to compare different length words.
+
+\subsection{Finding the best match}
+
+Although it is possible to find the word with the least error when compared to the query, there is a problem of what dictionary word arrays are to be stored in the database. For instance, one might think that during the calibration phase the user could speak the same word multiple times, take the average coordinates of each point for each frame, then store that array of frames, but it is not feasible to find an “average” motion because as mentioned before it is extremely rare for a person to pronounce two words for the exact same number of frames.
+
+As such, we use a modified form of the k nearest neighbors algorithm, where for our program $k=5$. The dictionary’s database actually stores multiple copies of each word. For instance, there can be five arrays of frames, each one labeled as the word “orthogonal” because the user said that word five times during calibration. Consequently, we can compute the error metric for every word, including duplicates, in the dictionary, then among the top 5 the word with the highest frequency is determined. For instance, if the top five scoring words were hummingbird, koala, hyena, koala, and crocodile, the best match would be koala. This is not quite the same as k nearest neighbors since none of these points have features or attributes for a proper machine learning to be used, and the metric that is computed between two words is relevant only to that particular pair.
+
+For our implementation, we used the following words in our dictionary: hyena, koala, platypus, hummingbird, crocodile. Each word was spoken 6 times so the dictionary contained 30 instances total. It is difficult to choose a set of words that is representative of the English language, so for such a preliminary, tentative evaluation, we selected a group of words that would help the performance of our algorithm. Specifically, these words are not too short—all are multisyllabic—and the lip motions for each word visually appear distinct from each other.
+
+
+\section{Analysis}
+
+When the same user who calibrates the dictionary also makes the queries, the output is very accurate. However, when there is any kind of cross use between different users—whether it is a user making queries to a dictionary he/she did not calibrate, or a dictionary that is calibrated by multiple people at the same time—the results are unsurprisingly poor. Reasonably, this is most likely because a person has his/her own idiosyncratic lip motion when speaking, in addition to different lip shapes and sizes. As such, results would predictably be best when the same user who calibrates the dictionary also makes the query, so this program is extremely user specific. Furthermore, some words that were misidentified were wrong but understandably so. For instance, the suffix of hummingbird, “mingbird”, has a very similar lip motion to the entire word “platypus”. For “crocodile” which was identified many times, this phenomenon probably occurred due to a mix of having different lip shapes, enunciations, and perhaps the lip motion for “crocodile” is on average similar to the rest of the words.
+
+However, there were several problems with the evaluation. Only a small dictionary of few copies per word was used. Furthermore, we purposely selected that particular set of words to help the performance of the algorithm. These problems are due to some limitations of the nature of the problem. For one, it is difficult to select a group of words that is representative of the various lip motions of the English language. In addition, many instances of each word in the dictionary ought to be acquired to improve its performance, although this would require a very long, intensive calibration procedure. In addition, it is important to consider what to consider correct or incorrect by the program. For instance, the words “heft” and “cleft” have the same lip motions but are different words; even a human reading somebody’s lips could not distinguish them. As such, the program should not be penalized for such words, but identifying such pairs of words would require gathering much data.
+
+There are some ways to improve the algorithm performance. The dynamic programming algorithm used may not have been an effective metric. One possibility would be to use a hidden Markov model or other statistical or machine learning tool to find the best matching word based off of coordinates. In addition, having a procedure to “normalize” words or arrays of frames may reduce error; for instance, finding geometric transformations to make coordinates resistant to translations, scaling, and rotations. A method for making queries and words the same number of frames would also help. Furthermore, it may be possible to engineer an appropriate feature vector from the lip motions so that proper machine learning techniques can be applied.
+
+For the evaluation procedure, a more extensive dictionary comprised of a larger vocabulary of more instances each would make results more reliable. Furthermore, it would be interesting to see results of cross use with more users instead of just three people. Also, the algorithm would probably not perform well for shorter words since there would be less lip motion involved, but it would still be of interest to see the error rate in this case and understand how it could be reduced.
+
+A possible next step for this algorithm would be to match syllables instead. It would be a similar mechanic to the current program: certain subsets of frames would correspond to a spoken syllable, and the program would have to find the most likely syllable spoken from the given lip motions. An issue with this is that syllables are also marked by tongue motion, so it would not be completely visible from video. However, if some procedure could at least approximate when syllables are spoken, then perhaps one approach would be to use a Bayesian network to find the most likely sequence of syllables that was spoken given the observed event of lip motions, then string the syllables together to produce a word.
 
 {\small
 \bibliographystyle{ieee}
