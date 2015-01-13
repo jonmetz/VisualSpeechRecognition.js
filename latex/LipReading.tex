@@ -29,11 +29,6 @@
 
 \author{Mouse Lee\\
 {\tt\small jl27@princeton.edu}
-% For a paper whose authors are all at the same institution,
-% omit the following lines up until the closing ``}''.
-% Additional authors and addresses can be added with ``\and'',
-% just like the second author.
-% To save space, use either the email address or home page, not both
 \and
 Jonathan Metzman\\
 {\tt\small jmetzman@princeton.edu}
@@ -287,11 +282,38 @@ chronological) order, so prefer \cite{Dupont} to
 
 %------------------------------------------------------------------------
 \section{Motivation}
+\subsection{Why do this}
+We found VSR to be a worthy problem for a couple of reasons.
+A VSR system can be used to recognize speech in scenarios where only visual data is kept, such as in Closed Circuit TV recordings.
+A more common use case than recognizing speech in video recording without audio is recognizing speech in a recording with a large amount of background noise.
+Background noise makes audio based speech recognition considerably more difficult, so a vision or hybrid speech recognition system could be more accurate in noisy scenarios \cite{Dupont}.
 
-We found VSR to be a worthy problem for a couple of reasons. The effectiveness of audio based speech recognition depends on the absence of background noise, so a vision based or hybrid system would be more accurate in these situations \cite{Dupont}.
-A VSR system can also be useful in scenarios where only visual data is kept, such as in Closed Circuit TV recordings.
+\subsection{What makes this difficult}
+We tried to build a system that can determine which words, from a predefined set of words, or dictionary, are being said.
+This kind of system could allow computer users to perform simple tasks, such as navigating to a specific website, by speaking, even in the presence of noise, such as while listening to music.
+Like most other computer vision problems, ``VSR is Hard'' ©.
+A VSR system must be able to determine the words that are being spoken based on the motion of a user's mouth.
+This can actually be quite hard in the real world because of things like diferences between the lighting or camera in the testing and training data.
+Recognizing the speech of real people can be difficult becuase of behaviors like moving their face.
+In the real world there also things that make tracking the motion of the mouth more difficult such as makeup, glasses, facial hair, or teeth.
+We beleive that our system is resilient to these differences, and performs will in real conditions.
+One thing that is important for practical reasons that our system is capable of is recognizing the speech of a user without requiring training on data supplied by the user themself.
+!!WHAT ABOUT USER NOT FACING THE CAMERA!!
+There are other issues that seem to be insurmountable for our system such such as poor lighting and occlusion; we think a speech recognition system that also used audio data would be most robust in these scenarios.
 
-!!FINISH!! It is difficult because
+
+%------------------------------------------------------------------------
+\section{Related Work}
+\subsection{What has been done}
+Speech recognition has gone from academic research interest to an essential part of the way user interact with computing devices ~\cite{Lison:2014:SDS:2677339.2659891}.
+Most of these technologies rely solely on acoustic data. However, an obvious drawback of these systems is that their performace is severly degraded by noise ~\cite{Cooke2001267}. Research has shown that systems that use visual data in place of, or in addittion to audio data, can significantly outperform systems that only use audio data in the presence of noise ~\cite{Lison:2014:SDS:2677339.2659891}.
+\subsection{What are the problems}
+Most other research, with a few exceptions focuses mainly on acoustic recognition, with visual recognition used as a secondary means of recognition. We thought that using a purely vision based approach would be an interesting challenge, and provide some of the advantages outlined above.
+Another difference between our approach and those of most other VSR systems is that most of them try to detect visual phenomes, or visemes, rather than actual words.
+While this approach is more generalizable and would allow detection of words that the system has not been explicitly trained on, we suspected that this approach may be less accurate for recognizing specific words than the approach we decided to take.
+One study that used this method was able to acheive 72.73\% recognition of vowels, since the percentage would drop for specific words we felt the usefulness of this approach is quite limited for many use cases ~\cite{Viseme}.
+A final difference bet
+
 
 %-------------------------------------------------------------------------
 \subsection{Margins and page numbering}
@@ -425,7 +447,8 @@ Please refer to the author guidelines on the CVPR 2015 web page for a discussion
 of the use of color in your document.
 
 %------------------------------------------------------------------------
-\section{Final copy}
+\section{Algorithm}
+
 
 You must include your signed IEEE copyright release form when you submit
 your finished paper. We MUST have this form before your paper can be
