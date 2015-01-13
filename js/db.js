@@ -72,8 +72,13 @@ function calMatList2WordList(calMatList, dontPrune) {
 
   var len = calMatList.length;
   var wordList = [];
+  var gap = 1;
   for (var matrixInd = 1; matrixInd < len; matrixInd++) {
-    wordList[matrixInd - 1] = calMatList[matrixInd].word;
+    var word = calMatList[matrixInd].word;
+    if (word)
+      wordList[matrixInd - gap] = word;
+    else
+      gap += 1;
   }
   if (!dontPrune) {
     wordList = wordList.filter(function(elem, pos) {
