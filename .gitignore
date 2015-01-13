@@ -4,6 +4,5 @@
 core
 *.log
 *.synctex.gz
-*.aux
 *.bbl
 *.blg
