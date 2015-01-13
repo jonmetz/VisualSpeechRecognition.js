@@ -277,23 +277,17 @@ chronological) order, so prefer \cite{Dupont} to
 %------------------------------------------------------------------------
 \section{Motivation}
 \subsection{Why do this}
-We found VSR to be a worthy problem for a couple of reasons.
-A VSR system can be used to recognize speech in scenarios where only visual data is kept, such as in Closed Circuit TV recordings.
-A more common use case than recognizing speech in video recording without audio is recognizing speech in a recording with a large amount of background noise.
-Background noise makes audio based speech recognition considerably more difficult, so a vision or hybrid speech recognition system could be more accurate in noisy scenarios \cite{Dupont}.
+We found VSR to be a worthy problem for a couple of reasons. A VSR system can be used to recognize speech in scenarios where only visual data is kept, such as in Closed Circuit TV recordings. A more common use case than recognizing speech in video recording without audio is recognizing speech in a recording with a large amount of background noise. Background noise makes audio based speech recognition considerably more difficult, so a vision or hybrid speech recognition system could be more accurate in noisy scenarios \cite{Dupont}.
 
 \subsection{What makes this difficult}
-We tried to build a system that can determine which words, from a predefined set of words, or dictionary, are being said.
-This kind of system could allow computer users to perform simple tasks, such as navigating to a specific website, by speaking, even in the presence of noise, such as while listening to music.
-Like most other computer vision problems, ``VSR is Hard'' ©.
-A VSR system must be able to determine the words that are being spoken based on the motion of a user's mouth.
-This can actually be quite hard in the real world because of things like diferences between the lighting or camera in the testing and training data.
-Recognizing the speech of real people can be difficult becuase of behaviors like moving their face.
-In the real world there also things that make tracking the motion of the mouth more difficult such as makeup, glasses, facial hair, or teeth.
-We beleive that our system is resilient to these differences, and performs will in real conditions.
-One thing that is important for practical reasons that our system is capable of is recognizing the speech of a user without requiring training on data supplied by the user themself.
-!!WHAT ABOUT USER NOT FACING THE CAMERA!!
-There are other issues that seem to be insurmountable for our system such such as poor lighting and occlusion; we think a speech recognition system that also used audio data would be most robust in these scenarios.
+We constructed a system that can determine which words, from a predefined set of words, or dictionary, are being said.
+
+A VSR system must be able to determine the words that are being spoken based on the motion of a user's mouth. This can actually be quite hard in the real world because of things like differences between the lighting or camera in the testing and training data. Recognizing the speech of real people can be difficult because of factors such as moving the face, different lip shapes, and even different pronunciations of the same word among various people.
+
+There also commonplace computer vision obstacles that make tracking the motion of the mouth more difficult such as makeup, glasses, facial hair, and even the teeth and tongue.
+
+We believe that our system is resilient to some of these challenges, and performs well in real conditions. One important feature we attempt for practical reasons is for our system to be capable of recognizing the speech of a user without requiring training on data supplied by the same user. Other issues such as poor lighting and occlusion are commonplace problems for most visual systems, including our program; we think a speech recognition system that also used audio data would be most robust in these scenarios.
+
 
 
 %------------------------------------------------------------------------
@@ -311,6 +305,7 @@ A final advantage our implementation has over nearly any other implementation is
 
 %-------------------------------------------------------------------------
 \section{Algorithm}
+
 \subsection{Overview}
 First we will present an outline of how the program operates, and then afterwards discuss major problems, assumptions, and algorithms. The program is outlined as follows:
 \begin{enumerate}
