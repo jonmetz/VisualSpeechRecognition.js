@@ -40,7 +40,7 @@ function drawLoop() {
   var currPos = ctrack.getCurrentPosition()
   if (currPos) {
     drawLips(overlay, currPos);
-    // displayPoints(currPos);
+    displayPoints(currPos);
   }
 }
 
@@ -128,7 +128,7 @@ function calcLoop() {
 
   if (currPos) {
     drawLips(overlay, currPos);
-    // displayPoints(currPos);
+    displayPoints(currPos);
 
 	if(calibrateModeOn)
 		scale = 1;
