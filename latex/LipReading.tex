@@ -49,23 +49,30 @@ Bo Moon\\
 %------------------------------------------------------------------------
 \section{Motivation}
 \subsection{Why do this}
-We found VSR to be a worthy problem for a couple of reasons. A VSR system can be used to recognize speech in scenarios where only visual data is kept, such as in Closed Circuit TV recordings. A more common use case than recognizing speech in video recording without audio is recognizing speech in a recording with a large amount of background noise. Background noise makes audio based speech recognition considerably more difficult, so a vision or hybrid speech recognition system could be more accurate in noisy scenarios \cite{Dupont}.
+We found Visual Speech Recognition, or VSR, to be a worthy problem for a few reasons.
+VSR can recognize speech better than Audio Speech Recognition, or ASR, in certain scenarios.
+It can be used to recognize speech in cases where only visual data is kept, such as in Closed Circuit TV recordings, whereas ASR cannot.
+Background noise is very common in audio recordings, and we thought this presented another use case for VSR.
+In fact, VSR or hybrid approaches to speech recognition are more accurate on audio recordings with background noise than purely audio based methods \cite{Dupont}.
+Finally we thought that VSR from lip motion presented an interesting challenge since it required entailed tracking of a deformable object.
+
 
 \subsection{What makes this difficult}
-We constructed a system that can determine which words, from a predefined set of words, or dictionary, are being said.
+We constructed a system that can determine which word, from a predefined set or dictionary, is being spoken by the user.
 
-A VSR system must be able to determine the words that are being spoken based on the motion of a user's mouth. This can actually be quite hard in the real world because of things like differences between the lighting or camera in the testing and training data. Recognizing the speech of real people can be difficult because of factors such as moving the face, different lip shapes, and even different pronunciations of the same word among various people.
+A VSR system must be able to determine the words that are being spoken based on the motion of a user's mouth. This can actually be quite hard in the real world because of things like differences between the lighting or camera in the testing and training data. Recognizing the speech of real people can be also difficult because of factors such as motion of the entire face, different lip shapes, and even different pronunciations of the same word between different users people.
 
-There also commonplace computer vision obstacles that make tracking the motion of the mouth more difficult such as makeup, glasses, facial hair, and even the teeth and tongue.
+Other things that make tracking the motion of the mouth more difficult are makeup, glasses, facial hair, and even the user's teeth and tongue.
 
-We believe that our system is resilient to some of these challenges, and performs well in real conditions. One important feature we attempt for practical reasons is for our system to be capable of recognizing the speech of a user without requiring training on data supplied by the same user. Other issues such as poor lighting and occlusion are commonplace problems for most visual systems, including our program; we think a speech recognition system that also used audio data would be most robust in these scenarios.
+We believe that our system is resilient to some of these challenges, and performs well in real conditions. One important feature we aimed for, for practical reasons, is for our system to be capable of recognizing the speech of a user without requiring training on data supplied by the same user.
+Other issues such as poor lighting and occlusion are commonplace problems for most visual systems, including our program; we think a speech recognition system that also used audio data would be most robust in scenarios where these are a big issue.
 
 
 
 %------------------------------------------------------------------------
 \section{Related Work}
 \subsection{What has been done}
-Speech recognition has gone from academic research interest to an essential part of the way user interact with computing devices ~\cite{Lison:2014:SDS:2677339.2659891}.
+Speech recognition has gone from academic research interest to an essential part of the way users interact with computing devices ~\cite{Lison:2014:SDS:2677339.2659891}.
 Most of these technologies rely solely on acoustic data. However, an obvious drawback of these systems is that their performace is severly degraded by noise ~\cite{Cooke2001267}. Research has shown that systems that use visual data in place of, or in addittion to audio data, can significantly outperform systems that only use audio data in the presence of noise ~\cite{Lison:2014:SDS:2677339.2659891}.
 
 \subsection{What are the problems}
